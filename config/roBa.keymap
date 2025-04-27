@@ -62,146 +62,189 @@
         };
     };
 
-//--------------ここから追記---------------
+    //--------------ここから追記---------------
     //--------USキーボードの記号を日本語OSで表示通りに入力するための処理-----------------------------
     //`~マーク
+
     jis_GRAVE: jis_GRAVE {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_GRAVE";
         #binding-cells = <0>;
-        bindings = <&kp LS(LBKT)>, <&kp EQUAL>; //通常時でもレフトシフトするようにしてある。
+        bindings = <&kp LS(LBKT)>, <&kp EQUAL>;
+ //通常時でもレフトシフトするようにしてある。
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;  //shiftを押しっぱなしにするための記述
     };
+
     //@マーク
+
     jis_N2: jis_N2 {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_N2";
         #binding-cells = <0>;
         bindings = <&kp N2>, <&kp LBKT>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
+
         //keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     //^マーク
+
     jis_N6: jis_N6 {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_N6";
         #binding-cells = <0>;
         bindings = <&kp N6>, <&kp EQUAL>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
+
         //keep-mods = <(MOD_LSFT|MOD_RSFT)>;
-    //&マーク
+        //&マーク
     };
+
     jis_N7: jis_N7 {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_N7";
         #binding-cells = <0>;
         bindings = <&kp N7>, <&kp N6>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     //アスタリスクマーク
+
     jis_N8: jis_N8 {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_N8";
         #binding-cells = <0>;
         bindings = <&kp N8>, <&kp SQT>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     // (マーク
+
     jis_N9: jis_N9 {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_N9";
         #binding-cells = <0>;
         bindings = <&kp N9>, <&kp N8>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     // )マーク
+
     jis_N0: jis_N0 {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_N0";
         #binding-cells = <0>;
         bindings = <&kp N0>, <&kp N9>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     //アンダーバー
+
     jis_MINUS: jis_MINUS {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_MINUS";
         #binding-cells = <0>;
         bindings = <&kp MINUS>, <&kp INT1>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     //イコールとプラス
+
     jis_EQUAL: jis_EQUAL {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_EQUAL";
         #binding-cells = <0>;
         bindings = <&kp LS(MINUS)>, <&kp SEMI>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     // [マーク
+
     jis_LBKT: jis_LBKT {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_LBKT";
         #binding-cells = <0>;
         bindings = <&kp RBKT>, <&kp RBKT>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     // ]マーク
+
     jis_RBKT: jis_RBKT {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_RBKT";
         #binding-cells = <0>;
         bindings = <&kp BSLH>, <&kp BSLH>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     // yenマーク
+
     jis_BSLH: jis_BSLH {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_BSLH";
         #binding-cells = <0>;
-        bindings = <&kp INT3>, <&kp INT3>; //INT3ではないかも
+        bindings = <&kp INT3>, <&kp INT3>;
+ //INT3ではないかも
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     //コロンセミコロン
+
     jis_SEMI: jis_SEMI {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_SEMI";
         #binding-cells = <0>;
         bindings = <&kp SEMI>, <&kp SQT>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
+
         //keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+
     //クオーテーション
+
     jis_SQT: jis_SQT {
         compatible = "zmk,behavior-mod-morph";
         label = "jis_SQT";
         #binding-cells = <0>;
         bindings = <&kp LS(N7)>, <&kp N2>;
+
         mods = <(MOD_LSFT|MOD_RSFT)>;
         keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
 
-//--------------ここまで---------------
+    //--------------ここまで---------------
 
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                   &kp T                                                   &kp Y      &kp U  &lt 5 I    &kp O    &kp P
+&kp Q             &kp W         &kp E         &kp R                   &kp T                                                   &kp Y      &kp U  &kt I      &kp O    &kp P
 &kp A             &kp S         &kp D         &kp F                   &kp G        &kp LS(LG(S))               &kp MINUS      &kp H      &kp J  &kp K      &kp L    &kp SQT
 &mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                   &kp B        &kp COLON                   &kp SEMICOLON  &kp N      &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 LANG2  &lt 2 LANG1  &lt_to_layer_0 3 SPACE      &kp ENTER      &lt 1 DEL                             &kp BACKSPACE
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 1 LANG2  &lt 2 LANG1  &lt_to_layer_0 4 SPACE      &kp ENTER      &lt 3 DEL                             &kp BACKSPACE
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -209,10 +252,10 @@
 
         FUNCTION {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                       &kp F1  &kp F2  &kp F3  &kp F4  &kp F5
-&trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans  &trans  &trans  &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
+&kp F1  &kp F2  &kt F3  &kt F4  &kp F5                         &kp F1  &kp F2  &kp F3  &kp F4  &kp F5
+&kt F6  &kt F7  &kt F8  &kt F9  &kt F10  &kt F11      &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
+&trans  &trans  &trans  &trans  &trans   &kt F12      &trans   &trans  &trans  &trans  &trans  &kp F11
+&to 6   &trans  &trans  &trans  &trans   &trans       &trans   &trans                          &kp F12
             >;
         };
 
@@ -227,10 +270,10 @@
 
         ARROW {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &kp PG_UP      &kp HOME        &kp UP_ARROW    &kp END          &trans
-&kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &kp PAGE_DOWN  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans         &trans          &trans          &trans           &trans
-&trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                                                          &trans
+&kp ESCAPE          &kp HOME                &kp UP_ARROW    &kp END                  &kp PG_UP                      &kp PG_UP      &kp HOME        &kp UP_ARROW            &kp END                  &trans
+&kp TAB             &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kt PG_DN  &trans      &trans  &kp PAGE_DOWN  &kp LEFT_ARROW  &kp DOWN_ARROW          &kp RIGHT_ARROW          &trans
+&kp LS(LEFT_SHIFT)  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans     &trans      &trans  &trans         &trans          &kt LC(LG(LEFT_ARROW))  &kt LC(LG(RIGHT_ARROW))  &trans
+&trans              &trans                  &trans          &trans                   &trans     &trans      &trans  &trans                                                                          &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
@@ -238,11 +281,13 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &mkp MB4  &trans    &mkp MB5  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp 0 0>;
         };
 
         SCROLL {
