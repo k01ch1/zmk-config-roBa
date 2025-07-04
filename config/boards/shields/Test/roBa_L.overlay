@@ -1,5 +1,4 @@
 #include "roBa.dtsi"
-#include <input/processors.dtsi>
 
 &kscan0 {
         col-gpios
