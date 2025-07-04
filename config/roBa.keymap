@@ -304,7 +304,7 @@
 &none  &none           &none           &none            &none  &none                &none  &none                                &none
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&scroll_up_down>;
         };
 
         SCROLL {
@@ -315,7 +315,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&scroll_up_down>;
         };
 
         layer_6 {
