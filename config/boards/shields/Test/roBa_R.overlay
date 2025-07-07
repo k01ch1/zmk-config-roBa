@@ -38,14 +38,6 @@
             ;
 };
 
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-    };
-};
-
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
@@ -85,7 +77,7 @@
         scroll-layers = <5>;
 
     arrows {
-        layers = <3>;
+        layers = <1>;
         bindings =
             <&kp RIGHT_ARROW>,
             <&kp LEFT_ARROW>,
