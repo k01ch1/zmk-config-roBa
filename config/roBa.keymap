@@ -42,6 +42,11 @@
             bindings = <&kp UNDERSCORE>;
             key-positions = <27 26>;
         };
+
+        plus {
+            bindings = <&kp PLUS>;
+            key-positions = <26 25>;
+        };
     };
 
     macros {
