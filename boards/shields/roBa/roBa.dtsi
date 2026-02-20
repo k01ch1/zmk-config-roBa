@@ -10,6 +10,7 @@
     roba_physical_layout: roba_physical_layout {
         compatible = "zmk,physical-layout";
         display-name = "roBa";
+        transform = <&default_transform>;
 
         keys  //                     w   h    x    y     rot    rx    ry
             = <&key_physical_attrs 100 100    0   37       0     0     0>
