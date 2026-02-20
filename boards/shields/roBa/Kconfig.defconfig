@@ -26,10 +26,4 @@ if SHIELD_ROBA_R || SHIELD_ROBA_L || SHIELD_ROBA_DONGLE
 config ZMK_SPLIT
     default y
 
-config ZMK_BLE
-    default y
-
-config ZMK_SPLIT_BLE
-    default y
-
 endif
