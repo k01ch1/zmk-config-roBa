@@ -3,6 +3,8 @@ if SHIELD_ROBA_DONGLE
 config ZMK_KEYBOARD_NAME
 	default "roBa"
 
+config ZMK_SPLIT
+    default y
 config ZMK_SPLIT_ROLE_CENTRAL
 	default y
 
@@ -21,9 +23,11 @@ config BT_MAX_PAIRED
 endif
 
 
-if SHIELD_ROBA_R || SHIELD_ROBA_L || SHIELD_ROBA_DONGLE
+if SHIELD_ROBA_R || SHIELD_ROBA_L
 
 config ZMK_SPLIT
     default y
+config ZMK_SPLIT_ROLE_CENTRAL
+	default n
 
 endif
