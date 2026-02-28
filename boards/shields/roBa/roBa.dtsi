@@ -3,14 +3,14 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
         zmk,physical-layout = &roba_physical_layout;
     };
 
     roba_physical_layout: roba_physical_layout {
         compatible = "zmk,physical-layout";
-        display-name = "roBa";
+        display-name = "Default";
         transform = <&default_transform>;
+        kscan = <&kscan0>;
 
         keys  //                     w   h    x    y     rot    rx    ry
             = <&key_physical_attrs 100 100    0   37       0     0     0>
@@ -63,7 +63,7 @@
 
 
             , <&key_physical_attrs 100 100  650  387 (-2000)   650   387>
-            , <&key_physical_attrs 100 100  763  350 (-1000)     0   350>
+            , <&key_physical_attrs 100 100  763  350 (-1000)   763   350>
 
             , <&key_physical_attrs 100 100 1200  337       0     0     0>
 
@@ -86,6 +86,7 @@
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
         diode-direction = "col2row";
+        wakeup-source;
             row-gpios
                 = <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
                 , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
@@ -111,11 +112,6 @@
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <10>;
     };
-
-    trackball_listener: trackball_listener {
-        compatible = "zmk,input-listener";
-        status = "disabled";
-    };
 };
 
 &spi0 {
@@ -124,5 +120,31 @@
     trackball: trackball@0 {
         status = "disabled";
         reg = <0>;
+    };
+};
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackball_split>;
+    };
+};
+
+/ {
+    chg_stat: chg_stat {
+        compatible = "custom,chg-stat";
+        status = "okay";
+        gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
     };
 };

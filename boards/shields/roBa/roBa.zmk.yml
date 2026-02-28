@@ -3,7 +3,12 @@ id: roBa
 name: roBa
 type: shield
 url: https://github.com/kumamuk-git/zmk-config-roBa
-requires: [xiao_ble]
+requires: [seeeduino_xiao_ble]
 features:
   - keys
   - pointer
+  - encoder
+siblings:
+  - roBa_dongle
+  - roBa_L
+  - roBa_R

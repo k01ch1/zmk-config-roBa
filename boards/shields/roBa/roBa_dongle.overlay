@@ -1,17 +1,33 @@
-#include <dt-bindings/zmk/matrix_transform.h>
 #include "roBa.dtsi"
+#include <input/processors.dtsi>
+#include <input/processors/runtime-input-processor.dtsi>
+#include <behaviors/battery_history_request.dtsi>
 
-/delete-node/ &kscan0;
+&kscan0 {
+	status = "disabled";
+};
 
 / {
-    chosen {
-        zmk,kscan = &mock_kscan;
-    };
+   chosen {
+      zmk,kscan = &mock_kscan;
+   };
 
-    mock_kscan: mock_kscan_0 {
-        compatible = "zmk,kscan-mock";
-        columns = <0>;
-        rows = <0>;
-        events = <0>;
-    };
+   mock_kscan: kscan_1 {
+      compatible = "zmk,kscan-mock";
+      columns = <0>;
+      rows = <0>;
+      events = <0>;
+   };
+};
+
+&roba_physical_layout {
+    kscan = <&mock_kscan>;
+};
+
+&trackball_listener {
+    status = "okay";
+    device = <&trackball_split>; // 物理センサーの生入力を監視
+    
+    /* 物理入力をDYA Studioのプロセッサに流し込む */
+    input-processors = <&mouse_runtime_input_processor 0>;
 };

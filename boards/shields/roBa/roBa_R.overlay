@@ -1,4 +1,5 @@
 #include "roBa.dtsi"
+#include <behaviors/battery_history_request.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -14,13 +15,6 @@
             ;
 };
 
-/ {
-    trackball_listener {
-        status = "okay";
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-    };
-};
 
 &pinctrl {
     spi0_default: spi0_default {
@@ -43,6 +37,8 @@
 
 &xiao_serial { status = "disabled"; };
 
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
@@ -53,9 +49,22 @@
 
     trackball: trackball@0 {
         status = "okay";
-        compatible = "pixart,pmw3610_alt";
+        compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
     };
 };
+
+#include <input/processors/report_rate_limit.dtsi>
+
+&trackball_split {
+    device = <&trackball>;
+    status = "okay";
+
+    input-processors = <&zip_report_rate_limit 15>;
+};
+
