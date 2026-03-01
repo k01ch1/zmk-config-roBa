@@ -24,7 +24,16 @@
     kscan = <&mock_kscan>;
 };
 
+/ {
+    runtime_input_processor: runtime_input_processor {
+        compatible = "zmk,runtime-input-processor";
+        #input-processor-cells = <1>;
+        device = <&trackball>; 
+    };
+};
+
 &trackball_listener {
     status = "okay";
-    device = <&trackball_split>; // 物理センサーの生入力を監視
+    device = <&trackball_split>;
+    input-processors = <&mouse_runtime_input_processor 0>;
 };
