@@ -93,20 +93,11 @@
 
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
-/ {
-    runtime_input_processor: runtime_input_processor {
-        compatible = "zmk,runtime-input-processor";
-        #input-processor-cells = <1>;
-        device = <&trackball>; 
-    };
-};
-
 &trackball {
     cpi = <800>;
     swap-xy;
     invert-x;
     invert-y;
-    input-processors = <&mouse_runtime_input_processor 0>;
 };
 
 &zip_mouse_gesture {
@@ -820,7 +811,7 @@
 &kp Q                             &kp W             &kp E         &kp R      &kp T                                                                   &kp Y         &kp U   &kp I                   &kp O                &lt 8 P
 &kp A                             &kp S             &kp D         &kp F      &kp G            &kp LS(LG(S))        &eager_tap_dance LANGUAGE_2 1     &kp H         &kp J   &mouse_gesture_kp 0 K   &kp L                &kp SEMICOLON
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V      &kp B            &kp MINUS            &kp UNDER                         &kp N         &kp M   &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &lt 3 TAB  &lt 2 BACKSPACE  &lt 4 SPACE          &lt 9 ENTER                       &lt 2 DELETE                                                       &lt 10 ESCAPE
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &lt 2 TAB  &lt 3 BACKSPACE  &lt 4 SPACE          &lt 9 ENTER                       &lt 2 DELETE                                                       &lt 10 ESCAPE
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };

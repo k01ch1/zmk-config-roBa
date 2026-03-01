@@ -27,7 +27,4 @@
 &trackball_listener {
     status = "okay";
     device = <&trackball_split>; // 物理センサーの生入力を監視
-    
-    /* 物理入力をDYA Studioのプロセッサに流し込む */
-    input-processors = <&mouse_runtime_input_processor 0>;
 };
