@@ -6,8 +6,6 @@ manifest:
       url-base: https://github.com/badjeff
     - name: carrefinho
       url-base: https://github.com/carrefinho
-    - name: ssbb
-      url-base: https://github.com/ssbb
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -19,9 +17,5 @@ manifest:
     - name: prospector-zmk-module
       remote: carrefinho
       revision: feat/new-status-screens
-    - name: zmk-listeners
-      remote: ssbb
-      revision: v1
-      path: modules/zmk-listeners
   self:
     path: config
