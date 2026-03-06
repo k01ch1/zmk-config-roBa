@@ -868,10 +868,10 @@
         ALT_TAB {
             display-name = "ALT TAB";
             bindings = <
-&kp TAB      &none     &kp UP    &none      &none                       &none   &none     &kp UP     &none      &kp TAB
-&kp LS(TAB)  &kp LEFT  &kp DOWN  &kp RIGHT  &none   &none       &none   &none   &kp LEFT  &kp DOWN   &kp RIGHT  &kp LS(TAB)
-&none        &none     &none     &none      &none   &none       &none   &none   &none     &none      &none      &none 
-&none        &none     &none     &none      &none   &none       &none   &none                                   &none 
+&kp TAB      &none     &kp UP    &none                  &none                                                                            &none                     &none     &kp UP     &none      &kp TAB
+&kp LS(TAB)  &kp LEFT  &kp DOWN  &kp RIGHT              &none                        &none                      &none                    &none                     &kp LEFT  &kp DOWN   &kp RIGHT  &kp LS(TAB)
+&none        &none     &none     &none                  &none                        &none                      &none                    &none                     &none     &none      &none      &none 
+&none        &none     &none     &lt_exit_alttab 2 TAB  &lt_exit_alttab 3 BACKSPACE  &lt_exit_alttab 4 SPACE    &lt_exit_alttab 9 ENTER  &lt_exit_alttab 2 DELETE                                  &none 
             >;
         };
 
@@ -879,10 +879,10 @@
         CTRL_TAB {
             display-name = "CTRL TAB";
             bindings = <
-&kp LS(TAB)  &none     &kp UP    &none      &none                       &none   &none     &kp UP    &none      &kp LS(TAB)
-&kp TAB      &kp LEFT  &kp DOWN  &kp RIGHT  &none   &none       &none   &none   &kp LEFT  &kp DOWN  &kp RIGHT  &kp TAB
-&kp LS(TAB)  &none     &none     &none      &none   &none       &none   &none   &none     &none     &none      &kp LS(TAB)
-&none        &none     &none     &none      &none   &none       &none   &none                                  &none 
+&kp LS(TAB)  &none     &kp UP    &none                  &none                                                                            &none                     &none     &kp UP    &none      &kp LS(TAB)
+&kp TAB      &kp LEFT  &kp DOWN  &kp RIGHT              &none                        &none                      &none                    &none                     &kp LEFT  &kp DOWN  &kp RIGHT  &kp TAB
+&kp LS(TAB)  &none     &none     &none                  &none                        &none                      &none                    &none                     &none     &none     &none      &kp LS(TAB)
+&none        &none     &none     &lt_exit_alttab 2 TAB  &lt_exit_alttab 3 BACKSPACE  &lt_exit_alttab 4 SPACE    &lt_exit_alttab 9 ENTER  &lt_exit_alttab 2 DELETE                                 &none 
             >;
         };
 
@@ -925,7 +925,7 @@
         CONFIGURATION {
             display-name = "CONFIG";
             bindings = <
-&reset_bootloader 0 0 &none       &none  &none  &tog_ls                                  &ind_con      &ind_bat      &none         &out OUT_TOG    &reset_bootloader 0 0
+&reset_bootloader 0 0 &none       &none  &none  &tog_ls                                  &ind_con      &ind_bat      &out OUT_USB  &out OUT_BLE    &reset_bootloader 0 0
 &none                 &none       &none  &none  &tog_ls_on   &none       &td_bt_clear    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
 &none                 &none       &none  &none  &tog_ls_off  &none       &studio_unlock  &none         &none         &none         &none           &none
 &none                 &none       &none  &none  &none        &none       &none           &none                                                     &td_bt_clear_all
