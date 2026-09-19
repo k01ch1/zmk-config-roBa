@@ -7,3 +7,7 @@ requires: [xiao_ble]
 features:
   - keys
   - pointer
+  - encoder
+siblings:
+  - roBa_L
+  - roBa_R

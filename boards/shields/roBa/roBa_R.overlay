@@ -1,4 +1,7 @@
 #include "roBa.dtsi"
+#include <input/processors.dtsi>
+#include <input/processors/runtime-input-processor.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &default_transform {
     col-offset = <6>;
@@ -12,14 +15,6 @@
             , <&xiao_d 7 GPIO_ACTIVE_HIGH>
             , <&gpio0 10 GPIO_ACTIVE_HIGH>
             ;
-};
-
-/ {
-    trackball_listener {
-        status = "okay";
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-    };
 };
 
 &pinctrl {
@@ -53,9 +48,58 @@
 
     trackball: trackball@0 {
         status = "okay";
-        compatible = "pixart,pmw3610_alt";
+        compatible = "pixart,pmw3610-alt";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
     };
+};
+
+/* ─────────────────────────────────────────────────────────────
+   scroll_runtime_input_processor をスクロール変換器として上書き
+
+   デフォルトでは x-codes=HWHEEL / y-codes=WHEEL で
+   「すでにスクロールイベントになっているもの」しか処理しない設定。
+   トラックボールの生イベント(REL_X/Y) を受け取って
+   xy-to-scroll-enabled でスクロールに変換する形に切替える。
+
+   ・active-layers : デフォルトのスクロールレイヤー bitmask
+                     bit10=SCROLL → 0x00000400
+                     DYA Studio から変更可能(再ビルド不要)
+   ・xy-to-scroll-enabled : REL_X→HWHEEL, REL_Y→WHEEL に変換
+                            こちらも Studio から ON/OFF 可能
+   ────────────────────────────────────────────────────── */
+&scroll_runtime_input_processor {
+    x-codes = <INPUT_REL_X>;
+    y-codes = <INPUT_REL_Y>;
+    xy-to-scroll-enabled;
+    active-layers = <0x00000400>;  /* layer10 */
+    scale-multiplier = <1>;
+    scale-divisor = <1>;            /* スクロール速度。大きいほど遅い。Studioで調整可 */
+    /* 軸ロック(縦のみ等)が欲しければ AXIS_SNAP_MODE_Y を初期値に */
+    /* #include <dt-bindings/zmk/runtime_input_processor.h> 必要 */
+    /* axis-snap-mode = <2>; */
+    /* axis-snap-threshold = <100>; */
+};
+
+/* マウス用は全レイヤーで有効 (active-layers = 0 がデフォルト) */
+&mouse_runtime_input_processor {
+    /* 例: マウス感度初期値を Studio から調整したいだけならここで触らなくてOK */
+};
+
+/* ─────────────────────────────────────────────────────────────
+   入力リスナー
+   メインチェーンに mouse → scroll の順で2段。
+   ・mouse は全レイヤーで走る(scale/invert を適用)
+   ・scroll は active-layers のレイヤーでのみ走る
+     → 該当レイヤー以外では素通しでマウスとして動作
+   scroller {} 子ノードは使わない(レイヤー固定になるため)
+   ────────────────────────────────────────────────────── */
+&trackball_listener {
+    status = "okay";
+    device = <&trackball>;
+    input-processors = <&mouse_runtime_input_processor &scroll_runtime_input_processor>;
 };

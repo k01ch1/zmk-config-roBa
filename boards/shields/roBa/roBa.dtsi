@@ -1,9 +1,12 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
 
+&uicr {
+    nfct-pins-as-gpios;
+};
+
 / {
     chosen {
-        zmk,kscan = &kscan0;
         zmk,physical-layout = &roba_physical_layout;
     };
 
@@ -11,6 +14,7 @@
         compatible = "zmk,physical-layout";
         display-name = "roBa";
         transform = <&default_transform>;
+        kscan = <&kscan0>;
 
         keys  //                     w   h    x    y     rot    rx    ry
             = <&key_physical_attrs 100 100    0   37       0     0     0>
@@ -63,7 +67,7 @@
 
 
             , <&key_physical_attrs 100 100  650  387 (-2000)   650   387>
-            , <&key_physical_attrs 100 100  763  350 (-1000)     0   350>
+            , <&key_physical_attrs 100 100  763  350 (-1000)   763   350>
 
             , <&key_physical_attrs 100 100 1200  337       0     0     0>
 
@@ -86,12 +90,22 @@
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
         diode-direction = "col2row";
+        wakeup-source;
             row-gpios
                 = <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
                 , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
                 , <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
                 , <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
                 ;
+    };
+
+    //right hand trackball
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        /* DYA Studio で動的に編集できるよう、入力プロセッサは
+           overlay 側で &mouse_runtime_input_processor /
+           &scroll_runtime_input_processor へ委譲する */
     };
 
     left_encoder: encoder_left {
@@ -111,18 +125,12 @@
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <10>;
     };
-
-    trackball_listener: trackball_listener {
-        compatible = "zmk,input-listener";
-        status = "disabled";
-    };
 };
 
-&spi0 {
-    status = "disabled";
-
-    trackball: trackball@0 {
-        status = "disabled";
-        reg = <0>;
+/ {
+    chg_stat: chg_stat {
+        compatible = "custom,chg-stat";
+        status = "okay";
+        gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
     };
 };
